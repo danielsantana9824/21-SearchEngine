@@ -12,8 +12,24 @@ const SignupForm = () => {
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
+  const [emailError, setEmailError] = useState('');
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
+    console.log('name', name);
+    console.log('value', value);
+
+
+    if (name === 'email') {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        setEmailError('Please enter a valid email address.');
+      } else {
+        setEmailError('');
+      }
+    }
+
     setUserFormData({ ...userFormData, [name]: value });
   };
 
@@ -22,9 +38,16 @@ const SignupForm = () => {
 
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
+
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(userFormData.email)) {
+      setEmailError('Please enter a valid email address.');
+      return;
     }
 
     try {
@@ -79,6 +102,7 @@ const SignupForm = () => {
             name='email'
             onChange={handleInputChange}
             value={userFormData.email}
+            isInvalid={!!emailError}
             required
           />
           <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
