@@ -17,10 +17,6 @@ const SignupForm = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    console.log('name', name);
-    console.log('value', value);
-
-
     if (name === 'email') {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(value)) {
