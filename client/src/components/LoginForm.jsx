@@ -10,11 +10,20 @@ const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-
+  const [emailError, setEmailError] = useState('');
 
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
+    if (name === 'email') {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        setEmailError('Please enter a valid email address.');
+      } else {
+        setEmailError('');
+      }
+    }
     setUserFormData({ ...userFormData, [name]: value });
   };
 
@@ -26,6 +35,12 @@ const LoginForm = () => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(userFormData.email)) {
+      setEmailError('Please enter a valid email address.');
+      return;
     }
 
     try {
@@ -60,6 +75,7 @@ const LoginForm = () => {
             name='email'
             onChange={handleInputChange}
             value={userFormData.email}
+            isInvalid={!!emailError}
             required
           />
           <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
