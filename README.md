@@ -31,9 +31,9 @@ Through this project, I gained experience in:
 - [How to Contribute](#how-to-contribute)  
 - [Tests](#tests)  
 
-## Video  
+## Render  
 ```bash  
-https://thriving-stroopwafel-a8b6c7.netlify.app/  
+https://two1-searchengine.onrender.com
 ```  
 
 ## Installation  
