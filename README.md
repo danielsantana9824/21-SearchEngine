@@ -63,7 +63,7 @@ Once the application is running, you can access it in your browser. The app incl
 - A user-friendly interface built with React that displays book results dynamically.
 
 ### Example Screenshot  
-![screenshot](../21-SearchEngine/images/screenshot.png)  
+![screenshot](./images/screenshot.png)  
 
 ## Credits  
 This project builds upon skills and techniques learned in web development courses. React, MongoDB, Apollo Server, and GraphQL were key technologies used in this refactor.  
